@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <meta charset="utf-8">
+ 
+  <title>Word Guess Game</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+
+<body>
+
+
+  <div id="game">
+
+    <header>
+      <h1>Word Guess Game</h1>
+      <br>
+      <br>
+    </header>
+
+
+    <br>
+    
+    <h3 class="themeTitle">********</h3>
+    <br>
+    <br>
+    <div class="jumboCont">
+    <div class="jumbotron jumbotron-fluid"  style="opacity: 0.90;" >
+      <div class="container">
+        <h1 class="display-4 theme" style="text-align:center;" >Current Theme</h1>
+        <p class="lead" style="font-size: 30px; ">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+     
+     
+     
+     
+      </div>
+    </div>
+  </div>
+   
+   
+    <form>
+      <div class="buttons" style="align-items:center;">
+  
+        <button id="btnFood"  onClick="reply_click(this)">Lunch Places</button>
+      
+        <button id="btn80pop" onClick="reply_click(this)">80s Music artist</button>
+      
+        <button id="btnheroes" onClick="reply_click(this)">Super Heroes</button>
+      </div>
+    </form>
+
+    <h2> Guesses Left:</h2>
+    <h2 id="guessesCount">0</h2>
+    <br>
+
+    <br>
+    <br>
+    <div class="guessedLetter">
+      <h2 id="Guessed"></h2>
+      <!--   Put box to display letters that were guessed-->
+    </div>
+    <div class="display">
+
+
+
+
+    </div> 
+
+
+  
+  
+  
+  </div>
+    
+    
+    
+    <script  src="assets/javascript/game.js">
+    </script>
+
+
+</body>
+
+</html>
