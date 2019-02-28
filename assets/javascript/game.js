@@ -19,14 +19,10 @@ document.onkeyup = function (event) {
 }
 
 var guessArr = [];
-
-
 function reply_click() {
   whichtheme(event.srcElement.id)
 
 }
-
-
 
 function whichtheme(btnid) {
   var diner = ["McDonalds", "Pizza Hut", "Taco Bell", "Olive Garden", "Panda Express"];
@@ -79,28 +75,40 @@ function shuffle(array) {
 //$(function(){
 //  $(document).on('keypress', function(e){
 //      console.log(e.which);
- // });
+// });
 //  });
 //
 
 var guessWordSoFar = "";
 
-// Creating our car object.
 
 for (i = 0; i < 5; i++) {   // Master outerloop
 
-  wordToguess = guessArr[i];
-  
-    //firstcreate the blank word with empty spaces to account for the length
-  if( i===0){ 
-              guessWordSoFar = game.makeblank();} 
-            
+  wordToguess = guessArr[0];  // get the first one from the array
+  guessArr.splice(0, 1);  // removes he first element from array cause we already picked it from the list. 
+  //firstcreate the blank word with empty spaces to account for the length
+  if (i === 0) {
+    guessWordSoFar = game.makeblank();
+  }
 
+  // populate html page with blank string
 
+  while (i < 10) {
+    var letterGuess = prompt("Pick a letter ", "X");
 
+    game.guessletter = letterGuess;
+    var guessWordComp = game.checkguess(wordToguess, guessWordSoFar, letterGuess);
+    if (guessWordComp === guessWordsofar) {
+      i++;
+      //Update html for number of tries  left//    
+    } //letter not found number of tries decreased
+    else
+    { //update html with wordguessed so far}
+ 
+  }
 
-
-/*************************************** * game object below*********************************************************************/
+}
+  /*************************************** * game object below*********************************************************************/
   var game = {
 
     //This function creates a blank unpopulated string to account for each letter position and space. 
@@ -114,36 +122,34 @@ for (i = 0; i < 5; i++) {   // Master outerloop
       }
       return blankstr
     },
-  
+
 
     // This function "checkguess" checks the user input letter against the word and returns populated string with succesful guesses
-    // or returns not found. 
-    checkguess: function (fullword, blankstr, checkLetter) 
-    {     var blankstr;
-          var indices=[];
-          for(var i=0; i<str.length;i++) {
-            if (fullword[i]===checkLetter)  blankstr = replaceA(blankstr, i, checkLetter); //indices.push[i];
+     checkguess: function (fullword, blankstr, checkLetter) {
+      var blankstr;
+      var indices = [];
+      for (var i = 0; i < str.length; i++) {
+        if (fullword[i] === checkLetter) blankstr = This.replaceAt(blankstr, i, checkLetter); //indices.push[i];
 
-      }        
+      }
       return blankstr
     },
 
-  // replace charater at postion. 
-     replaceAt: function(string, index, replace)
-     {
+    // replace char at postion. This gets called from  checkguess
+    replaceAt: function (string, index, replace) {
       return string.substring(0, index) + replace + string.substring(index + 1);
     }
-,
+    ,
     max_guesses: 10,
     guess_left: 10,
     lengthofitem: 0,
-    guessletter:""
+    guessletter: ""
 
   }
   /**************************************************game object above************************************** */
+
  
-  guessWordSoFar = game.makeblank();  // This is the blank word with spaces
-  
+
   // game object has to populate the screen based on the word passed to it. 
   // get the length 
 
@@ -154,9 +160,9 @@ for (i = 0; i < 5; i++) {   // Master outerloop
   // if guess exceeds 10 . reveal the word.  Prompt user if they want to play again.  
 
 
-
-
 }
+
+
 
 
 
