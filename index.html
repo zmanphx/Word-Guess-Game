@@ -13,6 +13,9 @@
  
   <title>Word Guess Game</title>
   <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -29,17 +32,17 @@
 
     <br>
     
-    <h3 class="themeTitle">********</h3>
+ 
     <br>
     <br>
     <div class="jumboCont">
     <div class="jumbotron jumbotron-fluid"  style="opacity: 0.90;" >
       <div class="container">
+        <h4 id="guessesLeft">Guesses left: </h4>
         <h1 class="display-4 theme" style="text-align:center;" >Current Theme</h1>
-        <p class="lead" style="font-size: 30px; ">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-     
-     
-     
+        <p class="lead blankWord" style="font-size: 30px; ">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <h4 id="letterGuessed">Letters Guessed so far: </h4>
+       
      
       </div>
     </div>
@@ -47,21 +50,23 @@
    
    
     <form>
-      <div class="buttons" style="align-items:center;">
+      <div class="buttons" >
   
-        <button id="btnFood"  onClick="reply_click(this)">Lunch Places</button>
+       
+      <button class="btnfood"</button> 
+       
+      <!--  <button class="btnFood"  onClick="reply_click(this)">Lunch Places</button>-->
+        
+       
+        <button class="btn80pop" onClick="reply_click(this)">80s Music artist</button>
       
-        <button id="btn80pop" onClick="reply_click(this)">80s Music artist</button>
+        <button class="btnheroes" onClick="reply_click(this)">Super Heroes</button>
       
-        <button id="btnheroes" onClick="reply_click(this)">Super Heroes</button>
-      
-        <button id="btnstart" onClick="reply_click(this)">Start</button>
+        <button class="btnstart" onClick="reply_click(this)">Start</button>
 
       </div>
     </form>
 
-    <h2> Guesses Left:</h2>
-    <h2 id="guessesCount">0</h2>
     <br>
 
     <br>

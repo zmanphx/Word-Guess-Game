@@ -1,6 +1,6 @@
-body{background: url("../images/foodwall.jpg" )
+body{background: url("../images/foodwall.jpg" );
      /* background: url("../images/wallpaper_edwar_80s1.gif") */                            
-
+      width: 960px;         
 }
 
 .jumboCont{ width: 80%;
@@ -11,3 +11,9 @@ body{background: url("../images/foodwall.jpg" )
     header h1 {text-align:center; 
                 background-color: turquoise;
     }
+
+     .buttons{  margin:0 auto;
+              width: 600px;
+
+     }
+     
