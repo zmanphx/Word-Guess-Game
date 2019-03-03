@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 
 <!-- JQuery -->
-<script src="https://code.jquery.com/jquery.js"></script>
+
 </head>
 
 <body>
@@ -38,10 +38,14 @@
     <div class="jumboCont">
     <div class="jumbotron jumbotron-fluid"  style="opacity: 0.90;" >
       <div class="container">
-        <h4 id="guessesLeft">Guesses left: </h4>
-        <h1 class="display-4 theme" style="text-align:center;" >Current Theme</h1>
-        <p class="lead blankWord" style="font-size: 30px; ">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        <h4 id="letterGuessed">Letters Guessed so far: </h4>
+        <h4 id="guessesLeft">Guesses left:<span id="gLeft"></span></h4>
+        <h4 class="display-4" style="text-align:center;" >Theme:<span id=theme>Pick a Theme</span></h4>
+      <div id="Display">
+        <p class="lead blankWord" style="font-size: 30px; "> <span id="dispunSolved"></span></p>
+      </div>
+         <br>
+         <br>
+        <h4 >Letters Guessed so far: <span id ="letterGuessed"></span></h4>
        
      
       </div>
@@ -53,9 +57,9 @@
       <div class="buttons" >
   
        
-      <button class="btnfood"</button> 
+  
        
-      <!--  <button class="btnFood"  onClick="reply_click(this)">Lunch Places</button>-->
+       <button class="btnFood"  onClick="reply_click(this)">Lunch Places</button>
         
        
         <button class="btn80pop" onClick="reply_click(this)">80s Music artist</button>

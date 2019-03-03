@@ -3,7 +3,7 @@ body{background: url("../images/foodwall.jpg" );
       width: 960px;         
 }
 
-.jumboCont{ width: 80%;
+.jumboCont{ width: 95%;
  
     margin: 0 auto;}
    
@@ -17,3 +17,13 @@ body{background: url("../images/foodwall.jpg" );
 
      }
      
+     #Display{margin: 0 auto;}
+
+     p{text-align: center;
+       letter-spacing: 15px;
+       font-size: 45px; 
+       background-color: rgb(233, 233, 218);
+    }
+     
+     
+     #dispunSolved{ font:bold;}

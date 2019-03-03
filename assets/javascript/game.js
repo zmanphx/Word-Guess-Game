@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+
 
 
 
@@ -16,7 +16,7 @@ var game = {
    blankstr: function () {
         var result ="";
     for (i = 0; i < this.solved.length ; i++) {
-      if (this.solved[i] !== " ") { result = result + "#" ;}
+      if (this.solved[i] !== " ") { result = result + "_" ;}
       else { result = result + " " ;}
       
     }
@@ -29,7 +29,7 @@ var game = {
     
     var indices = [];
     for (var i = 0; i < this.solved.length; i++) {
-      if (this.solved[i] === this.pickedLetter) this.unsolved = this.replaceAt(this.unsolved, i, this.pickedLetter); //indices.push[i];
+      if (this.solved[i].toLowerCase() === this.pickedLetter.toLowerCase()) this.unsolved = this.replaceAt(this.unsolved, i, this.solved[i]); //indices.push[i];
 
     }
     return this.unsolved;
@@ -49,42 +49,40 @@ var game = {
 
 /**************************************************game object above************************************** */
 
-$(".btnFood").on("click", function() {
-  whichtheme("btnFood");
-});
 
 
 
 
-//function reply_click() {
-  //var guessArr = [];
-  ///btnid=event.srcElement.className;
-  //whichtheme(btnid);
+
+
+function reply_click() {
+var guessArr = [];
+btnid=event.srcElement.className;
+whichtheme(btnid);
   
-
-
 
 
   function whichtheme(btnid) {
     var diner = ["McDonalds", "Pizza Hut", "Taco Bell", "Olive Garden", "Panda Express"];
     var eightyspop = ["Elton John", "Michael Jackson", "Phil Collins", "Prince", "Billy Joel"];
     var actionHero = ["Super Man", "Spider Man", "Wonder Woman", "Batman", "Captain America"];
-
+   
     wordToguess = "";
 
     if (btnid === "btnFood") {
       guessArr = shuffle(diner);
+      document.getElementById("theme").innerHTML = "Fast Food Place";
 
     }
     else
       if (btnid === "btn80pop") {
 
         guessArr = shuffleArray(eightyspop);
-
+        document.getElementById("theme").innerHTML = "80's Music Artist";
       }
       else {
         guessArr = shuffleArray(actionHero);
-
+        document.getElementById("theme").innerHTML = "Action Heroes";
       }
   }
 
@@ -132,29 +130,54 @@ $(".btnFood").on("click", function() {
     //firstcreate the blank word with empty spaces to account for the length
     if (i === 0) {
       guessWordSoFar = game.blankstr();
+      document.getElementById("dispunSolved").innerHTML = guessWordSoFar;
+    
     }
 
     // populate html page with blank string
-
+    var myPicks = " ";
+    i = 0;
     while (i < 10) {
-      var letterGuess = prompt("Pick a letter ", "X");
+     
+     // document.getElementById("gleft").innerHTML = (10 - i );
+     
+      document.getElementById("dispunSolved").innerHTML=  guessWordSoFar;
+       
+      if(guessWordSoFar=== game.solved) 
+      {  
+         {break;} // game is solved
+      }
+       
+      var letterGuess = prompt("Pick a letter ", "a");
+      
+      
+      myPicks = myPicks +" " + letterGuess;
+   
+      document.getElementById("letterGuessed").innerHTML= myPicks;
+      
       guessWordSoFar= game.unsolved;
+     
       game.pickedLetter = letterGuess;
       game.checkguess();
-      if (guessWordSoFar === game.unsolved) {
+      if (guessWordSoFar === game.unsolved) { 
         i++;
         //Update html for number of tries  left  unsolved didn't change//    
       } //letter not found number of tries decreased prompt " Letter not found, list the letters guessed created a li append"
-      else { //update html with wordguessed so far} 
+      else { 
+              
+               guessWordSoFar= game.unsolved;
+              document.getElementById("dispunSolved").innerHTML = guessWordSoFar;} 
+
+     
 
       }
-
-    }
-  }
-
-//};
     
-});
+    }
+  
+
+};
+    
+
 
 
   // game object has to populate the screen based on the word passed to it. 
