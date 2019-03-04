@@ -53,7 +53,7 @@ var game = {
   losses: 0,
   myPicks: "",
   getUserGuesses: function (mykey) {
-   
+
     var guessWordSoFar;
     document.getElementById("dispunSolved").innerHTML = this.unsolved;
     var letterGuess = mykey;
@@ -62,25 +62,29 @@ var game = {
     guessWordSoFar = this.unsolved;
     this.pickedLetter = letterGuess;
     this.checkguess();
-    
+
     document.getElementById("dispunSolved").innerHTML = this.unsolved;
-   
+
     if (this.unsolved === this.solved) {
       {
-        document.getElementById("letterGuessed").innerHTML = "!!! You Won !!"
+        document.getElementById("letterGuessed").innerHTML = "!!! You Won !!";
         //alert("You solved the Word Search");
-        this.wins = wins + 1;
-        this.run();
+        this.wins = this.wins + 1;
+         startNewGame= true;
+         document.getElementById("theme").innerHTML = "Play Another Game Pick a Letter!!";
       } // game is solved
     }
 
     if (guessWordSoFar === this.unsolved) {
       this.guess_left = (this.guess_left - 1);
       document.getElementById("gLeft").innerHTML = (this.guess_left);
-      if (this.guess_left === 0) {
-        alert("no more guesses , selecting new word")
-        this.losses = losses + 1;
-         this.run();
+      if (this.guess_left < 1) {
+         console.log("guesses left " + this.guess_left);
+            
+       
+        this.losses = this.losses + 1;
+        startNewGame = true;
+        document.getElementById("theme").innerHTML = "No More Guesses, Pick a Letter";
       }
     }
     else {
@@ -93,17 +97,18 @@ var game = {
   ,
   run: function () {
     if (this.actionHero.length > 1) { this.shuffle(); }
-      console.log("actionHero "+ this.actionHero.length);
+    console.log("actionHero " + this.actionHero.length);
     if (this.actionHero.length === 0) {
       alert("No more words left, Game Over");
       document.location.reload();
     }
     this.myPicks = "";
-  
+
     this.solved = this.actionHero[0];  // get the first one from the array
-    this.actionHero.splice(0, 1);
+    this.actionHero.splice(0, 1); // remove word  from array so it isn't played again. 
     this.unsolved = this.blankstr();
     document.getElementById("dispunSolved").innerHTML = this.unsolved;
+    this.guess_left = 10;
     document.getElementById("gLeft").innerHTML = (10);
 
   },
@@ -112,17 +117,38 @@ var game = {
 };
 
 /**************************************************game object above************************************** */
-
+var newSession = true;
+var startNewGame = true;
 document.onkeyup = function (event) {
   var mykey = event.key;
-  if (mykey == "Enter") { console.log(mykey);
-    game.run();
-
+  if (newSession === true) {
+    console.log(mykey);
+    newSession = false;
+    game.run(); // sets game object properties
+    startNewGame= false;
+    document.getElementById("theme").innerHTML = "Lets Play!!";
   }
   else {
-    game.getUserGuesses(mykey);
+    if (startNewGame === true) {
+      startNewGame = false;
+      document.getElementById("theme").innerHTML ="New Game Pick a Letter Guess";
+      game.run(); //resets variables in object
+      game.getUserGuesses(mykey); // 
+    }
+    else {
+      startNewGame = false;
+      document.getElementById("theme").innerHTML ="Pick a Letter Guess";
+      game.getUserGuesses(mykey); 
+    }
+
   }
-}
+
+
+};
+
+
+
+
 
 
 
