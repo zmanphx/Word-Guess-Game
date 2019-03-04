@@ -69,9 +69,12 @@ var game = {
       {
         document.getElementById("letterGuessed").innerHTML = "!!! You Won !!";
         //alert("You solved the Word Search");
-        this.wins = this.wins + 1;
-         startNewGame= true;
-         document.getElementById("theme").innerHTML = "Play Another Game Pick a Letter!!";
+        this.wins = this.wins + 1; 
+        document.getElementById("Wins").innerHTML = " " + this.wins;
+        startNewGame = true;
+        document.getElementById("theme").innerHTML = "Winner!! -Play Another Game ";
+        setTimeout( this.delay, 3000); // starts new game
+     
       } // game is solved
     }
 
@@ -79,12 +82,14 @@ var game = {
       this.guess_left = (this.guess_left - 1);
       document.getElementById("gLeft").innerHTML = (this.guess_left);
       if (this.guess_left < 1) {
-         console.log("guesses left " + this.guess_left);
-            
-       
+        console.log("guesses left " + this.guess_left);
+
+
         this.losses = this.losses + 1;
+        document.getElementById("Losses").innerHTML = " "+ this.losses;
         startNewGame = true;
-        document.getElementById("theme").innerHTML = "No More Guesses, Pick a Letter";
+        document.getElementById("theme").innerHTML = "No More Guesses, Play Another Game";
+        setTimeout( this.delay, 3000);
       }
     }
     else {
@@ -108,11 +113,18 @@ var game = {
     this.actionHero.splice(0, 1); // remove word  from array so it isn't played again. 
     this.unsolved = this.blankstr();
     document.getElementById("dispunSolved").innerHTML = this.unsolved;
-    this.guess_left = 10;
-    document.getElementById("gLeft").innerHTML = (10);
+    this.guess_left = " " +10;
+    document.getElementById("gLeft").innerHTML = " " +(10);
 
   },
+  delay: function () {
+     console.log("My delay");
+    document.getElementById("theme").innerHTML = "Pick a Letter!!";
+    this.myPicks = "";
+    document.getElementById("letterGuessed").innerHTML = this.myPicks;
+    this.game.run();
 
+  }
 
 };
 
@@ -125,20 +137,20 @@ document.onkeyup = function (event) {
     console.log(mykey);
     newSession = false;
     game.run(); // sets game object properties
-    startNewGame= false;
+    startNewGame = false;
     document.getElementById("theme").innerHTML = "Lets Play!!";
   }
   else {
     if (startNewGame === true) {
       startNewGame = false;
-      document.getElementById("theme").innerHTML ="New Game Pick a Letter Guess";
-      game.run(); //resets variables in object
+    //  document.getElementById("theme").innerHTML = "New Game Pick a Letter Guess";
+     // game.run(); //resets variables in object
       game.getUserGuesses(mykey); // 
     }
     else {
       startNewGame = false;
-      document.getElementById("theme").innerHTML ="Pick a Letter Guess";
-      game.getUserGuesses(mykey); 
+     // document.getElementById("theme").innerHTML = "Pick a Letter Guess";
+      game.getUserGuesses(mykey);
     }
 
   }
