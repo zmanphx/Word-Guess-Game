@@ -6,6 +6,7 @@ var game = {
   unsolved: "",
   solved: "",
   pickedLetter: "",
+  
   //This function creates a blank unpopulated string to account for each letter position and space. 
   //This should be called when starting a new word search /
   blankstr: function () {
@@ -73,6 +74,7 @@ var game = {
         document.getElementById("Wins").innerHTML = " " + this.wins;
         startNewGame = true;
         document.getElementById("theme").innerHTML = "Winner!! -Play Another Game ";
+        winnerSound.play();
         setTimeout( this.delay, 3000); // starts new game
      
       } // game is solved
@@ -89,6 +91,7 @@ var game = {
         document.getElementById("Losses").innerHTML = " "+ this.losses;
         startNewGame = true;
         document.getElementById("theme").innerHTML = "No More Guesses, Play Another Game";
+         looseSound.play();
         setTimeout( this.delay, 3000);
       }
     }
@@ -128,12 +131,43 @@ var game = {
 
 };
 
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+};
+
+
+
 /**************************************************game object above************************************** */
 var newSession = true;
 var startNewGame = true;
+var introSound;
+var looseSound;
+var winnerSound;
+
+ 
+function introGame() {
+ 
+  introSound = new sound("assets/javascript/intro.mp3");
+  looseSound = new sound("assets/javascript/laugh.mp3");
+  winnerSound = new sound("assets/javascript/winner.mp3");
+}
+
 document.onkeyup = function (event) {
   var mykey = event.key;
   if (newSession === true) {
+    introGame();
+    introSound.play();
     console.log(mykey);
     newSession = false;
     game.run(); // sets game object properties
@@ -143,8 +177,7 @@ document.onkeyup = function (event) {
   else {
     if (startNewGame === true) {
       startNewGame = false;
-    //  document.getElementById("theme").innerHTML = "New Game Pick a Letter Guess";
-     // game.run(); //resets variables in object
+    
       game.getUserGuesses(mykey); // 
     }
     else {
@@ -165,154 +198,6 @@ document.onkeyup = function (event) {
 
 
 
-/* function reply_click() {
-  var guessArr = [];
-  btnid = event.srcElement.className;
-
-  setTimeout(whichtheme(btnid), 2000);
-
-  var imageUrl = "" */
-
-/* function whichtheme(btnid) {
-  var diner = ["McDonalds", "Pizza Hut", "Taco Bell", "Olive Garden", "Panda Express"];
-  var eightyspop = ["Elton John", "Michael Jackson", "Phil Collins", "Prince", "Billy Joel"];
-  var actionHero = ["Super Man", "Spider Man", "Wonder Woman", "Batman", "Captain America"];
-  var mybody = document.getElementById("mybody");
-  wordToguess = "";
-*/
-/* if (btnid === "btnFood") {
-  guessArr = shuffle(diner);
-  document.getElementById("theme").innerHTML = "Lunch- Dinner Place";
-
-  //document.body.style.backgroundImage = "url('../images/foodwall.jpg')";
-
-}
-else
-  if (btnid === "btn80pop") {
-
-    guessArr = shuffle(eightyspop);
-    document.getElementById("theme").innerHTML = "80's Music Artist";
-    // document.body.style.backgroundImage= "url('../images/wallpaper_edwar_80s1.gif' )";
-  }
-  else {
-    guessArr = shuffle(actionHero);
-    document.getElementById("theme").innerHTML = "Action Heroes";
-    // document.body.style.backgroundImage = "url('../images/superheroe.jpg' )";
-  }
-}
-*/
-/* function shuffle(array) {
-  var i = 0
-    , j = 0
-    , temp = null
-
-  for (i = array.length - 1; i > 0; i -= 1) {
-    j = Math.floor(Math.random() * (i + 1))
-    temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-  }
-  return array;
-}
-*/
-
-
-  //Check which button was pressed.
-  // Change background screen image
-  // load array to the game object
-  // create loop with prompt count up to 5 max "Do you want to play again ?"
-  // if user wants to play the same theme 
-
-  // pass array to game object
-
-  // jquery to capture which key was pressed/
-  //$(function(){
-  //  $(document).on('keypress', function(e){
-  //      console.log(e.which);
-  // });
-  //  });
-  //
-/*
-  var guessWordSoFar = "";
-
-  for (i = 0; i < 5; i++) {   // Master outerloop
-
-    wordToguess = guessArr[0];  // get the first one from the array
-    game.solved = wordToguess;
-    guessArr.splice(0, 1);  // removes he first element from array cause we already picked it from the list.
-    //firstcreate the blank word with empty spaces to account for the length
-    if (i === 0) {
-      guessWordSoFar = game.blankstr();
-      document.getElementById("dispunSolved").innerHTML = guessWordSoFar;
-
-    }
-
-    // populate html page with blank string
-    var myPicks = " ";
-    i = 0;
-    while (i < 10) {
-
-      document.getElementById("gLeft").innerHTML = (10 - i);
-
-      document.getElementById("dispunSolved").innerHTML = guessWordSoFar;
-
-      if (guessWordSoFar === game.solved) {
-        {
-          alert("You solved the Word Search");
-          break;
-
-
-        } // game is solved
-
-
-
-      } */
-
-/* var letterGuess = prompt("Pick a letter ", "a");
-
-if (i === 0) {
-  myPicks = myPicks + " " + letterGuess;
-}
-else { myPicks = myPicks + ",  " + letterGuess; }
-
-document.getElementById("letterGuessed").innerHTML = myPicks;
-
-guessWordSoFar = game.unsolved;
-
-game.pickedLetter = letterGuess;
-
-game.checkguess();
-
-if (guessWordSoFar === game.unsolved) {
-  i++;
-  //Update html for number of tries  left  unsolved didn't change//
-} //letter not found number of tries decreased prompt " Letter not found, list the letters guessed created a li append"
-else {
-
-  guessWordSoFar = game.unsolved;
-  document.getElementById("dispunSolved").innerHTML = guessWordSoFar;
-}
-
-
-
-}
-
-}
-
-
-};
-
-*/
-
-
-  // game object has to populate the screen based on the word passed to it. 
-  // get the length 
-
-  // set up loop to  listen to key events
-  //  User enter a letter,  create function to search word for the letter
-  // if successful  populate the  line position with the  letter .  if not successful 
-  // prompt the user that the guess was wrong and delete from the total.
-  // if guess exceeds 10 . reveal the word.  Prompt user if they want to play again.  
 
 
 
