@@ -7,26 +7,26 @@
 
 /*************************************** * game object below*********************************************************************/
 var game = {
-//unsolved is the unsolved word with character place holder, solved is the actual word
- unsolved : "",  
- solved:"",
- pickedLetter:"",
+  //unsolved is the unsolved word with character place holder, solved is the actual word
+  unsolved: "",
+  solved: "",
+  pickedLetter: "",
   //This function creates a blank unpopulated string to account for each letter position and space. 
   //This should be called when starting a new word search /
-   blankstr: function () {
-        var result ="";
-    for (i = 0; i < this.solved.length ; i++) {
-      if (this.solved[i] !== " ") { result = result + "_" ;}
-      else { result = result + " " ;}
-      
+  blankstr: function () {
+    var result = "";
+    for (i = 0; i < this.solved.length; i++) {
+      if (this.solved[i] !== " ") { result = result + "_"; }
+      else { result = result + " "; }
+
     }
     this.unsolved = result;
-    return  result;
+    return result;
   },
 
   // This function "checkguess" checks the user input letter against the word and returns populated string with succesful guesses
-  checkguess: function (  checkLetter) {
-    
+  checkguess: function (checkLetter) {
+
     var indices = [];
     for (var i = 0; i < this.solved.length; i++) {
       if (this.solved[i].toLowerCase() === this.pickedLetter.toLowerCase()) this.unsolved = this.replaceAt(this.unsolved, i, this.solved[i]); //indices.push[i];
@@ -43,7 +43,7 @@ var game = {
   max_guesses: 10,
   guess_left: 10,
   lengthofitem: 0,
- 
+
 
 };
 
@@ -56,33 +56,38 @@ var game = {
 
 
 function reply_click() {
-var guessArr = [];
-btnid=event.srcElement.className;
-whichtheme(btnid);
-  
+  var guessArr = [];
+  btnid = event.srcElement.className;
 
+  setTimeout(whichtheme(btnid), 2000);
+
+  var imageUrl = ""
 
   function whichtheme(btnid) {
     var diner = ["McDonalds", "Pizza Hut", "Taco Bell", "Olive Garden", "Panda Express"];
     var eightyspop = ["Elton John", "Michael Jackson", "Phil Collins", "Prince", "Billy Joel"];
     var actionHero = ["Super Man", "Spider Man", "Wonder Woman", "Batman", "Captain America"];
-   
+    var mybody = document.getElementById("mybody");
     wordToguess = "";
 
     if (btnid === "btnFood") {
       guessArr = shuffle(diner);
-      document.getElementById("theme").innerHTML = "Fast Food Place";
+      document.getElementById("theme").innerHTML = "Lunch- Dinner Place";
+
+      //document.body.style.backgroundImage = "url('../images/foodwall.jpg')";
 
     }
     else
       if (btnid === "btn80pop") {
 
-        guessArr = shuffleArray(eightyspop);
+        guessArr = shuffle(eightyspop);
         document.getElementById("theme").innerHTML = "80's Music Artist";
+        // document.body.style.backgroundImage= "url('../images/wallpaper_edwar_80s1.gif' )";
       }
       else {
-        guessArr = shuffleArray(actionHero);
+        guessArr = shuffle(actionHero);
         document.getElementById("theme").innerHTML = "Action Heroes";
+        // document.body.style.backgroundImage = "url('../images/superheroe.jpg' )";
       }
   }
 
@@ -120,8 +125,6 @@ whichtheme(btnid);
 
   var guessWordSoFar = "";
 
-
-
   for (i = 0; i < 5; i++) {   // Master outerloop
 
     wordToguess = guessArr[0];  // get the first one from the array
@@ -131,52 +134,64 @@ whichtheme(btnid);
     if (i === 0) {
       guessWordSoFar = game.blankstr();
       document.getElementById("dispunSolved").innerHTML = guessWordSoFar;
-    
+
     }
 
     // populate html page with blank string
     var myPicks = " ";
     i = 0;
     while (i < 10) {
-     
-     // document.getElementById("gleft").innerHTML = (10 - i );
-     
-      document.getElementById("dispunSolved").innerHTML=  guessWordSoFar;
-       
-      if(guessWordSoFar=== game.solved) 
-      {  
-         {break;} // game is solved
+
+      document.getElementById("gLeft").innerHTML = (10 - i);
+
+      document.getElementById("dispunSolved").innerHTML = guessWordSoFar;
+
+      if (guessWordSoFar === game.solved) {
+        {
+          alert("You solved the Word Search");
+          break;
+
+
+        } // game is solved
+
+
+
       }
-       
+
       var letterGuess = prompt("Pick a letter ", "a");
-      
-      
-      myPicks = myPicks +" " + letterGuess;
-   
-      document.getElementById("letterGuessed").innerHTML= myPicks;
-      
-      guessWordSoFar= game.unsolved;
-     
+
+      if (i === 0) {
+        myPicks = myPicks + " " + letterGuess;
+      }
+      else { myPicks = myPicks + ",  " + letterGuess; }
+
+      document.getElementById("letterGuessed").innerHTML = myPicks;
+
+      guessWordSoFar = game.unsolved;
+
       game.pickedLetter = letterGuess;
+
       game.checkguess();
-      if (guessWordSoFar === game.unsolved) { 
+
+      if (guessWordSoFar === game.unsolved) {
         i++;
         //Update html for number of tries  left  unsolved didn't change//    
       } //letter not found number of tries decreased prompt " Letter not found, list the letters guessed created a li append"
-      else { 
-              
-               guessWordSoFar= game.unsolved;
-              document.getElementById("dispunSolved").innerHTML = guessWordSoFar;} 
+      else {
 
-     
-
+        guessWordSoFar = game.unsolved;
+        document.getElementById("dispunSolved").innerHTML = guessWordSoFar;
       }
-    
+
+
+
     }
-  
+
+  }
+
 
 };
-    
+
 
 
 

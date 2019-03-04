@@ -1,7 +1,6 @@
-body{background: url("../images/foodwall.jpg" );
-     /* background: url("../images/wallpaper_edwar_80s1.gif") */                            
-      width: 960px;         
-}
+
+
+
 
 .jumboCont{ width: 95%;
  
@@ -27,3 +26,7 @@ body{background: url("../images/foodwall.jpg" );
      
      
      #dispunSolved{ font:bold;}
+     
+     #mybody{ background-image: url('../images/herowall.JPG');
+
+     }

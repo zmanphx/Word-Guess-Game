@@ -12,19 +12,19 @@
   <meta charset="utf-8">
  
   <title>Word Guess Game</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" 
 
-<!-- JQuery -->
+
 
 </head>
 
-<body>
+<body id="mybody">
 
 
   <div id="game">
 
     <header>
-      <h1>Word Guess Game</h1>
+      <h1>Word Guess Game </h1>
       <br>
       <br>
     </header>
@@ -39,7 +39,7 @@
     <div class="jumbotron jumbotron-fluid"  style="opacity: 0.90;" >
       <div class="container">
         <h4 id="guessesLeft">Guesses left:<span id="gLeft"></span></h4>
-        <h4 class="display-4" style="text-align:center;" >Theme:<span id=theme>Pick a Theme</span></h4>
+        <h4 class="display-4" style="text-align:center;" >Theme:<span id=theme>  Pick a Theme</span></h4>
       <div id="Display">
         <p class="lead blankWord" style="font-size: 30px; "> <span id="dispunSolved"></span></p>
       </div>
@@ -60,13 +60,12 @@
   
        
        <button class="btnFood"  onClick="reply_click(this)">Lunch Places</button>
-        
-       
+               
         <button class="btn80pop" onClick="reply_click(this)">80s Music artist</button>
       
         <button class="btnheroes" onClick="reply_click(this)">Super Heroes</button>
       
-        <button class="btnstart" onClick="reply_click(this)">Start</button>
+        
 
       </div>
     </form>
